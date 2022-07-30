@@ -10,7 +10,7 @@ class Tank:
         self.missile = missile
 
     def shoot_power(self, pow, player_angle, wind):
-        self.bomb_range = (player_angle * pow)//2 + (wind * 10)
+        self.bomb_range = (player_angle * pow)//4 + (wind)
         return self.bomb_range
 
 
@@ -49,3 +49,24 @@ def shoot_angle(angle):
 
     return angle_num
 
+def tank_dmg(hit_point, location, dmg, hp, missile):
+    if hit_point == location:
+        print(f'『 적중! {dmg * missile} 데미지!! 』')
+        print( '')
+        hp -= dmg * missile
+          
+    elif hit_point == location+1  and missile == 1:
+        print(f'『 적중! {dmg * missile} 데미지!! 』')
+        print( '')
+        hp -= dmg * missile
+        
+    elif hit_point == location+1  or hit_point == location-1 and missile == 3:
+        print(f'『 적중! {dmg * (missile-1)} 데미지!! 』')
+        print( '')
+        hp -= dmg * (missile -1)
+        
+    elif hit_point == location+2 or hit_point == location-2:
+        print(f'『 적중! {dmg } 데미지!! 』')
+        print( '')
+        hp -= dmg
+    return hp
