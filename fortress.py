@@ -10,10 +10,10 @@ while True:
     start = input(f'탱크를 고르세요! :  ')
     print('')
     if start == 'duke':
-        player_t = Tank('duke', 450, 2500, 3)    
+        player_t = Tank('duke', 550, 2500, 3)    
 
     elif start == 'cannon':
-        player_t = Tank('cannon', 800, 1700, 1)
+        player_t = Tank('cannon', 1100, 1700, 1)
 
     else:
         print('*'*47)
@@ -44,20 +44,23 @@ switch = True
 # 게임화면 세팅 (맵, 탱크, 바람) 
 while switch == True:
     wind = random.randrange(-7, 7)
-    map = '〓'*110
+    map = '〓'*105
     map_list = list(map)
-    map_list[tank_location], map_list[tank_location+1], map_list[tank_location+2] = '[o]', '[o]', '^'
-    map_list[com_location], map_list[com_location+1], map_list[com_location+2] = '*', '[x]', '[x]'
+    map_list[tank_location], map_list[tank_location+1], map_list[tank_location+2] = '[o]', '[o]', '//'
+    map_list[com_location], map_list[com_location+1], map_list[com_location+2] = '\\\\', '[x]', '[x]'
     map = "".join(map_list)
-
-    print('§')
-    print('§',' '*89,  windy(wind))
-    print('§')
-    print('§')
-    print('§')
-    print('§')
-    print('§')
-    print('§')
+    print('')
+    print('')
+    print(' '*95,)
+    print(' '*30, '*',' '*167, '*', ' '*7, )
+    print(' '*50, '＊', ' '*104,'☽',' '*49 )
+    print(' '*95,  windy(wind))
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
     print(map)
 
 # 플레이어 턴
@@ -70,29 +73,29 @@ while switch == True:
 
     player_angle = shoot_angle(ang)
     player_bomb = player_t.shoot_power(pow, player_angle, wind) + (tank_location+2)
-    print(player_bomb)
-    print(com_location)
 
     if 0 <= player_bomb <= 102 :
         map = '〓'*105
         map_list = list(map)
-        map_list[tank_location], map_list[tank_location+1], map_list[tank_location+2] = '[o]', '[o]', '^'
-        map_list[com_location], map_list[com_location+1], map_list[com_location+2] = '*', '[x]', '[x]'
+        map_list[tank_location], map_list[tank_location+1], map_list[tank_location+2] = '[o]', '[o]', '//'
+        map_list[com_location], map_list[com_location+1], map_list[com_location+2] = '\\\\', '[x]', '[x]'
         if start == 'duke':
             map_list[player_bomb], map_list[player_bomb+1], map_list[player_bomb+2] = '▽' '▼' '▼'
         elif start == 'cannon':
-            map_list[player_bomb] = '♥'
+            map_list[player_bomb] = '★'
         map = "".join(map_list)
         
         print(com_t.hp)
-        print('')
-        print(' '*90,  windy(wind))
-        print('')
-        print('')
-        print('')
-        print('')
-        print('')
-        print('')
+        print('§', '='*210, '§')
+        print('§',' '*30, '*',' '*167, '*', ' '*7, '§')
+        print('§', ' '*50, '＊', ' '*104,'☽',' '*49, '§')
+        print('§',' '*81,  windy(wind))
+        print('§', ' '*210, '§')
+        print('§', ' '*210, '§')
+        print('§', ' '*210, '§')
+        print('§', ' '*210, '§')
+        print('§', ' '*210, '§')
+        print('§', ' '*210, '§')
         print(map)
         com_t.hp = tank_dmg(player_bomb, com_location, player_t.dmg, com_t.hp, player_t.missile)
         if com_t.hp < 0 :
@@ -125,30 +128,32 @@ while switch == True:
 
     map = '〓'*105
     map_list = list(map)
-    map_list[tank_location], map_list[tank_location+1], map_list[tank_location+2] = '[o]', '[o]', '^'
-    map_list[com_location], map_list[com_location+1], map_list[com_location+2] = '*', '[x]', '[x]'
+    map_list[tank_location], map_list[tank_location+1], map_list[tank_location+2] = '[o]', '[o]', '//'
+    map_list[com_location], map_list[com_location+1], map_list[com_location+2] = '\\\\', '[x]', '[x]'
     map_list[com_pow], map_list[com_pow+1], map_list[com_pow+2] = '♨' '♨' '♨'
 
     map = "".join(map_list)
     
-    print('')
-    print(' '*90,  windy(wind))
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
+    print('§', '='*210, '§')
+    print('§',' '*30, '*',' '*167, '*', ' '*7, '§')
+    print('§', ' '*50, '＊', ' '*104,'☽',' '*49, '§')
+    print('§',' '*81,  windy(wind))
+    print('§', ' '*210, '§')
+    print('§', ' '*210, '§')
+    print('§', ' '*210, '§')
+    print('§', ' '*210, '§')
+    print('§', ' '*210, '§')
+    print('§', ' '*210, '§')
     print(map)
     player_t.hp = tank_dmg(com_pow, tank_location, com_t.dmg, player_t.hp, com_t.missile)
     print('')
-    if com_t.hp < 0 :
-        com_t.hp = 0
+    if player_t.hp < 0 :
+        player_t.hp = 0
         print(f'『 {round}라운드 결과 』')
         print(f'Player HP : {player_t.hp} ')
         print(f'Computer HP : {com_t.hp} ')
         print('')
-        print('@@ GG! 쳐발리셨습니다!! @@')
+        print('ㅋㅋ GG! 쳐발리셨습니다!! ㅋㅋ')
         break
     
     print(f'『 {round}라운드 결과 』')
@@ -159,7 +164,4 @@ while switch == True:
     round += 1
     switch = True
 
-    # hp 패배와 승리조건 안된다
-    
-
-
+    # 맵 좀더 꾸미고 밑에도 다 복사하기, 맵상에 hp표시, 아이템?

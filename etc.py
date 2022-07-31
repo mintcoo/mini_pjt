@@ -24,11 +24,11 @@ class Tank:
 
 def windy(wind):
     if wind == 0:
-        return 'Damage x 2!'
+        return '☀'
     elif wind < 0:
-        return '<'*(abs(wind))
+        return '◀ '*(abs(wind))
     elif wind > 0:
-        return '>'*(abs(wind))
+        return '▶ '*(abs(wind))
 
 # 각도 세팅 가중치 함수
 def shoot_angle(angle):
@@ -49,23 +49,30 @@ def shoot_angle(angle):
 
     return angle_num
 
+
+# 탱크 데미지에 따른 hp 계산함수
 def tank_dmg(hit_point, location, dmg, hp, missile):
     if hit_point == location:
-        print(f'『 적중! {dmg * missile} 데미지!! 』')
+        print(f'『 적중! {dmg * missile} 데미지!! 』')  # 1발짜리는 데미지 1번 3발짜리는 데미지 3번
         print( '')
         hp -= dmg * missile
           
-    elif hit_point == location+1  and missile == 1:
+    elif hit_point == location+1  and missile == 1:    # 1발짜리일때 컴퓨터위치 +1 자리 맞으면 데미지
+        print(f'『 적중! {dmg * missile} 데미지!! 』')
+        print( '')
+        hp -= dmg * missile
+
+    elif hit_point == location+2  and missile == 1:    # 1발짜리일때 컴퓨터위치 +2 자리 맞으면 데미지
         print(f'『 적중! {dmg * missile} 데미지!! 』')
         print( '')
         hp -= dmg * missile
         
-    elif hit_point == location+1  or hit_point == location-1 and missile == 3:
+    elif hit_point == location+1  or hit_point == location-1 and missile == 3:  #  3발짜리일때 컴퓨터 위치 +1 이나 -1 맞추면 2발히트!
         print(f'『 적중! {dmg * (missile-1)} 데미지!! 』')
         print( '')
         hp -= dmg * (missile -1)
         
-    elif hit_point == location+2 or hit_point == location-2:
+    elif hit_point == location+2 or hit_point == location-2 and missile == 3: #  3발짜리일때 컴퓨터 위치 +2 이나 -2 맞추면 1발히트!
         print(f'『 적중! {dmg } 데미지!! 』')
         print( '')
         hp -= dmg
