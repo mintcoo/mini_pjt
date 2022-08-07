@@ -1,5 +1,8 @@
+from re import X
 import pygame
 import random
+
+from src.heist import Heist
 
 #################################################################
 # 기본 초기화 (반드시 해야 하는 것들)
@@ -24,7 +27,7 @@ clock = pygame.time.Clock()
 background = pygame.image.load("resources/bground.png")
 
 # 폰트
-test_font = pygame.font.match_font('메이플스토리') # 경로 찾아주는 함수
+test_font = pygame.font.match_font('메이플스토리')  # 경로 찾아주는 함수
 game_font = pygame.font.Font(test_font, 20)
 
 # 캐릭터
@@ -33,7 +36,7 @@ character_size = character.get_rect().size  # 이미지 크기를 구해옴
 character_width = character_size[0]  # 캐릭터의 가로 크기
 character_height = character_size[1]  # 캐릭터의 세로 크기
 character_x_pos = (screen_width / 2) - (character_width / 2)
-character_y_pos = screen_height - character_height -2
+character_y_pos = screen_height - character_height - 2
 
 # 이동할 좌표
 to_x = 0
@@ -42,8 +45,10 @@ to_y = 0
 # 이동 속도
 character_speed = 0.3
 
-## 적 enemy 캐릭터
+# 적 enemy 캐릭터
 poops = []
+heist_obstacles = []
+
 for poop in range(12):
     enemy = pygame.image.load("resources/poop.png")
     enemy_size = enemy.get_rect().size
@@ -55,15 +60,21 @@ for poop in range(12):
 
 # 헤이스트 아이템
 item_shoes = pygame.image.load("resources/item_shoes.png")
-item_shoes_size = item_shoes.get_rect().size # 이미지 크기를 구해옴
-item_shoes_width = item_shoes_size[0] # 아이템의 가로 크기
-item_shoes_height = item_shoes_size[1] # 아이템의 세로 크기
+item_shoes_size = item_shoes.get_rect().size  # 이미지 크기를 구해옴
+item_shoes_width = item_shoes_size[0]  # 아이템의 가로 크기
+item_shoes_height = item_shoes_size[1]  # 아이템의 세로 크기
 item_shoes_x_pos = random.randrange(0, (screen_width - item_shoes_width))
 item_shoes_y_pos = 0
 item_shoes_speed = random.randrange(5, 9)
 
 
-# 똥 스피드 (While문 안이 아니라 밖에 빼주는거 중요)
+# 새로운 헤이스트 객체 생성
+_heist_obstacle = Heist(item_shoes, 0, 0)
+
+# 헤이스트 객체 heist_obstacles list에 추가
+heist_obstacles.append(_heist_obstacle)
+
+# 똥 스피드
 poops_speed = []
 for poop in poops:
     if poop[2] == 0:
@@ -93,32 +104,35 @@ while switch:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 to_x = 0
 
-    ## 위에서 뽑은 똥리스트에서 각 높이값이 680넘으면 재생성
-    
+    # 위에서 뽑은 똥리스트에서 각 높이값이 680넘으면 재생성
+
     for k, poop in enumerate(poops):
         if poop[2] > screen_height:
-            #여기가 새로 생성하는곳이니까 여기서 짜야되는데 
+            # 여기가 새로 생성하는곳이니까 여기서 짜야되는데
             poop[1] = random.randrange(0, (screen_width - enemy_width))
             poop[2] = 0
             count += 1
-            # 아래 enumerate를 이용해 제일먼저 내려간놈 인덱스 가져오는게 핵심
+            # 아래 enumerate를 이용하는게 핵심
             poops_speed[k] = random.randint(3, 9)
 
     # 아이템 새로 생성하는 곳
-    if item_shoes_y_pos > screen_height: 
+    if item_shoes_y_pos > screen_height:
         item_shoes_x_pos = random.randrange(0, (screen_width - enemy_width))
         item_shoes_y_pos = 0
+        # 아래 enumerate를 이용하는게 핵심
         item_shoes_speed = random.randint(5, 9)
-            
-    # 좌우 캐릭터 이동
-    character_x_pos += to_x * dt
 
-        
+    character_x_pos += to_x * dt
+    # 리스트 첫 시작 위치 차이..?
+
+    # 여기서 poops_speed 배열 선언하고 길이0개 값이아무것도없어서
+    # if poop[2] == 0:
+
     # 각 똥들 속도 개별로 설정
     i = 0
     for poop in poops:
-        poop[2] += poops_speed[i] # 이 코드가 속도 설정하는데
-        i += 1 
+        poop[2] += poops_speed[i]  # 이 코드가 속도 설정하는데
+        i += 1
 
     # 헤이스트 속도
     item_shoes_y_pos += item_shoes_speed
@@ -137,7 +151,7 @@ while switch:
     character_rect.left = character_x_pos
     character_rect.top = character_y_pos
 
-    ## 적과의 충돌 포문
+    # 적과의 충돌 포문
     enemy_rects = []
     for poop in poops:
         enemy_rect = poop[0].get_rect()
@@ -146,10 +160,9 @@ while switch:
         enemy_rects.append(enemy_rect)
 
     # 아이템과의 충돌
-    item_shoes_rect = item_shoes.get_rect()
-    item_shoes_rect.left = item_shoes_x_pos
-    item_shoes_rect.top = item_shoes_y_pos
-
+    # item_shoes_rect = item_shoes.get_rect()
+    # item_shoes_rect.left = item_shoes_x_pos
+    # item_shoes_rect.top = item_shoes_y_pos
 
     # 충돌 체크
     for rect in enemy_rects:
@@ -157,30 +170,40 @@ while switch:
             print("충돌함")
             switch = False
 
-    # 아이템 충돌 (먹음)
-    if character_rect.colliderect(item_shoes_rect):
-        print("속도업!!")
-        item_shoes_y_pos = -8000 # 하늘로 보내버림 ㅋㅋ
-        character_speed = 0.5
+    # 낙하 + 아이템 충돌 (먹음)
+    for heist_obstacle in heist_obstacles:
+        if heist_obstacle.is_dead == True:
+            heist_obstacles.remove(heist_obstacle)
+            continue
 
-    if item_shoes_y_pos == -2000:
-        character_speed = 0.3
+        if heist_obstacle.y >= screen_height:
+            heist_obstacle.on_collision_bottom()
+            continue
 
+        heist_obstacle.y += heist_obstacle.falling_speed
+        if character_rect.colliderect(heist_obstacle.get_rect()):
+            print("속도업!!")
+            character_speed = 0.5
+            heist_obstacle.on_collision_bottom()
+
+        # if item_shoes_y_pos == -2000:
+        #     character_speed = 0.3
 
     # 5. 화면에 그리기
-    count_draw = game_font.render(str(f'Scores : {count}'), True, (255, 255, 255 ))
-
+    count_draw = game_font.render(
+        str(f'Scores : {count}'), True, (255, 255, 255))
 
     screen.blit(background, (0, 0))  # 배경 그리기 (좌표 0, 0 이 제일왼쪽위)
 
     screen.blit(character, (character_x_pos, character_y_pos))  # 계속 캐릭터를 그림
 
-    screen.blit(item_shoes, (item_shoes_x_pos, item_shoes_y_pos))
+    # heist_obstacles 여러개 for문돌면서 전부 그리기
+    for heist_obstacle in heist_obstacles:
+        screen.blit(heist_obstacle.image, (heist_obstacle.x, heist_obstacle.y))
 
-    
     for poop in poops:
         screen.blit(poop[0], (poop[1], poop[2]))  # 적 그리기
-    
+
     screen.blit(count_draw, (10, 10))
 
     pygame.display.update()  # 게임화면을 다시 그리기! (while 동안 계쏙 돌면서 화면을 다시 그림 필수임!)
