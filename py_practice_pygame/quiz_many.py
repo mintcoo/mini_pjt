@@ -23,8 +23,12 @@ clock = pygame.time.Clock()
 # 배경
 background = pygame.image.load("background.png")
 
+# 폰트
+test_font = pygame.font.match_font('메이플스토리') # 경로 찾아주는 함수
+game_font = pygame.font.Font(test_font, 20)
+
 # 캐릭터
-character = pygame.image.load("character.png")
+character = pygame.image.load("marine.png")
 character_size = character.get_rect().size  # 이미지 크기를 구해옴
 character_width = character_size[0]  # 캐릭터의 가로 크기
 character_height = character_size[1]  # 캐릭터의 세로 크기
@@ -41,7 +45,7 @@ character_speed = 0.5
 ## 적 enemy 캐릭터
 poops = []
 for poop in range(1, 6):
-    enemy = pygame.image.load("enemy.png")
+    enemy = pygame.image.load("poop.png")
     enemy_size = enemy.get_rect().size
     enemy_width = enemy_size[0]
     enemy_height = enemy_size[1]
@@ -56,6 +60,13 @@ for poop in range(1, 6):
     # enemy_x_pos = random.randrange(0, (screen_width - enemy_width))
     # enemy_y_pos = 0
     # enemy_speed = 10
+poops_speed = []
+for poop in poops:
+    if poop[2] == 0:
+        ran = random.randrange(1, 5)
+        poops_speed.append(ran)
+
+count = 0
 
 # 이벤트 루프
 switch = True  # 게임이 진행중인가?
@@ -78,23 +89,30 @@ while switch:
                 to_x = 0
 
     ## 위에서 뽑은 똥리스트에서 각 높이값이 680넘으면 재생성
-    for poop in poops:
+    
+    for k, poop in enumerate(poops):
         if poop[2] > screen_height:
+            #여기가 새로 생성하는곳이니까 여기서 짜야되는데 
             poop[1] = random.randrange(0, (screen_width - enemy_width))
             poop[2] = 0
+            count += 1
+            #여기아래로 짜보셈 모르게승면 다시콜
+            poops_speed[k] = random.randint(1, 5)
+            
 
     character_x_pos += to_x * dt
     ## 리스트 첫 시작 위치 차이..?
-    poops_last = []
 
+    #여기서 poops_speed 배열 선언하고 길이0개 값이아무것도없어서
+    # if poop[2] == 0:
+        
+
+    i = 0
     for poop in poops:
-        if poop[2] == 0:
-            ran = random.randrange(0, 5)
-            poop[2] += ran
-            poops_last.append([poop[0], poop[1], poop[2]])
-    
-        else:
-            poop[2] += ran
+        poop[2] += poops_speed[i] # 이 코드가 속도 설정하는데
+        # poops는 무조건 5개고, i는 
+        i += 1 #근데여기서 0번쨰찾아서 에러남
+
 
 
 
@@ -114,7 +132,7 @@ while switch:
 
     ## 적과의 충돌 포문
     enemy_rects = []
-    for poop in poops_last:
+    for poop in poops:
         enemy_rect = poop[0].get_rect()
         enemy_rect.left = poop[1]
         enemy_rect.top = poop[2]
@@ -127,12 +145,17 @@ while switch:
             switch = False
 
     # 5. 화면에 그리기
+    count_draw = game_font.render(str(f'Scores : {count}'), True, (255, 255, 255 ))
+
+
     screen.blit(background, (0, 0))  # 배경 그리기 (좌표 0, 0 이 제일왼쪽위)
 
     screen.blit(character, (character_x_pos, character_y_pos))  # 계속 캐릭터를 그림
 
     for poop in poops:
         screen.blit(poop[0], (poop[1], poop[2]))  # 적 그리기
+    
+    screen.blit(count_draw, (10, 10))
 
     pygame.display.update()  # 게임화면을 다시 그리기! (while 동안 계쏙 돌면서 화면을 다시 그림 필수임!)
 
