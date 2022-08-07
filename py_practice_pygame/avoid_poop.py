@@ -8,7 +8,7 @@ pygame.init()
 
 # 화면 크기 설정
 screen_width = 480
-screen_height = 640
+screen_height = 720
 screen = pygame.display.set_mode((screen_width, screen_height))
 
 # 화면 타이틀 설정
@@ -21,31 +21,31 @@ clock = pygame.time.Clock()
 # 1. 사용자 게임 초기화 (배경 화면, 게임 이미지, 좌표, 속도, 폰트 등)
 
 # 배경
-background = pygame.image.load("background.png")
+background = pygame.image.load("resources/bground.png")
 
 # 폰트
 test_font = pygame.font.match_font('메이플스토리') # 경로 찾아주는 함수
 game_font = pygame.font.Font(test_font, 20)
 
 # 캐릭터
-character = pygame.image.load("marine.png")
+character = pygame.image.load("resources/poong.png")
 character_size = character.get_rect().size  # 이미지 크기를 구해옴
 character_width = character_size[0]  # 캐릭터의 가로 크기
 character_height = character_size[1]  # 캐릭터의 세로 크기
 character_x_pos = (screen_width / 2) - (character_width / 2)
-character_y_pos = screen_height - character_height
+character_y_pos = screen_height - character_height -2
 
 # 이동할 좌표
 to_x = 0
 to_y = 0
 
 # 이동 속도
-character_speed = 0.5
+character_speed = 0.3
 
 ## 적 enemy 캐릭터
 poops = []
-for poop in range(1, 6):
-    enemy = pygame.image.load("poop.png")
+for poop in range(12):
+    enemy = pygame.image.load("resources/poop.png")
     enemy_size = enemy.get_rect().size
     enemy_width = enemy_size[0]
     enemy_height = enemy_size[1]
@@ -53,19 +53,24 @@ for poop in range(1, 6):
     enemy_y_pos = 0
     poops.append([enemy, enemy_x_pos, enemy_y_pos])
 
-    # enemy = pygame.image.load("C:\\Users\\xhakt\\Desktop\\mini_pjt\\py_practice_pygame\\enemy.png")
-    # enemy_size = enemy.get_rect().size # 이미지 크기를 구해옴
-    # enemy_width = enemy_size[0] # 캐릭터의 가로 크기
-    # enemy_height = enemy_size[1] # 캐릭터의 세로 크기
-    # enemy_x_pos = random.randrange(0, (screen_width - enemy_width))
-    # enemy_y_pos = 0
-    # enemy_speed = 10
+# 헤이스트 아이템
+item_shoes = pygame.image.load("resources/item_shoes.png")
+item_shoes_size = item_shoes.get_rect().size # 이미지 크기를 구해옴
+item_shoes_width = item_shoes_size[0] # 아이템의 가로 크기
+item_shoes_height = item_shoes_size[1] # 아이템의 세로 크기
+item_shoes_x_pos = random.randrange(0, (screen_width - item_shoes_width))
+item_shoes_y_pos = 0
+item_shoes_speed = random.randrange(5, 9)
+
+
+# 똥 스피드 
 poops_speed = []
 for poop in poops:
     if poop[2] == 0:
-        ran = random.randrange(1, 5)
+        ran = random.randrange(3, 9)
         poops_speed.append(ran)
 
+# 점수 카운트
 count = 0
 
 # 이벤트 루프
@@ -96,8 +101,17 @@ while switch:
             poop[1] = random.randrange(0, (screen_width - enemy_width))
             poop[2] = 0
             count += 1
-            #여기아래로 짜보셈 모르게승면 다시콜
-            poops_speed[k] = random.randint(1, 5)
+            # 아래 enumerate를 이용하는게 핵심
+            poops_speed[k] = random.randint(3, 9)
+
+    # 아이템 새로 생성하는 곳
+    if item_shoes_y_pos > screen_height: 
+        item_shoes_x_pos = random.randrange(0, (screen_width - enemy_width))
+        item_shoes_y_pos = 0
+        # 아래 enumerate를 이용하는게 핵심
+        item_shoes_speed = random.randint(5, 9)
+
+    
             
 
     character_x_pos += to_x * dt
@@ -106,15 +120,14 @@ while switch:
     #여기서 poops_speed 배열 선언하고 길이0개 값이아무것도없어서
     # if poop[2] == 0:
         
-
+    # 각 똥들 속도 개별로 설정
     i = 0
     for poop in poops:
         poop[2] += poops_speed[i] # 이 코드가 속도 설정하는데
-        # poops는 무조건 5개고, i는 
-        i += 1 #근데여기서 0번쨰찾아서 에러남
+        i += 1 
 
-
-
+    # 헤이스트 속도
+    item_shoes_y_pos += item_shoes_speed
 
     # 3. 게임 캐릭터 위치 정의
 
@@ -138,11 +151,27 @@ while switch:
         enemy_rect.top = poop[2]
         enemy_rects.append(enemy_rect)
 
+    # 아이템과의 충돌
+    item_shoes_rect = item_shoes.get_rect()
+    item_shoes_rect.left = item_shoes_x_pos
+    item_shoes_rect.top = item_shoes_y_pos
+
+
     # 충돌 체크
     for rect in enemy_rects:
         if character_rect.colliderect(rect):
             print("충돌함")
             switch = False
+
+    # 아이템 충돌 (먹음)
+    if character_rect.colliderect(item_shoes_rect):
+        print("속도업!!")
+        item_shoes_y_pos = -8000
+        character_speed = 0.5
+
+    if item_shoes_y_pos == -2000:
+        character_speed = 0.3
+
 
     # 5. 화면에 그리기
     count_draw = game_font.render(str(f'Scores : {count}'), True, (255, 255, 255 ))
@@ -152,6 +181,9 @@ while switch:
 
     screen.blit(character, (character_x_pos, character_y_pos))  # 계속 캐릭터를 그림
 
+    screen.blit(item_shoes, (item_shoes_x_pos, item_shoes_y_pos))
+
+    
     for poop in poops:
         screen.blit(poop[0], (poop[1], poop[2]))  # 적 그리기
     
