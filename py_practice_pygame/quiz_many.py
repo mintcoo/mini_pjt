@@ -87,8 +87,11 @@ while switch:
 
     character_x_pos += to_x *dt
     ## 리스트 첫 시작 위치 차이..?
+    poops_last = []
     for poop in poops:
-        poop[2] += random.randrange(0, 5)
+        ran = random.randrange(0, 5)
+        poop[2] += ran
+        poops_last.append([poop[0], poop[1], poop[2]])
 
 
 
@@ -110,7 +113,7 @@ while switch:
     
     ## 적과의 충돌 포문
     enemy_rects = []
-    for poop in poops:
+    for poop in poops_last:
         enemy_rect = poop[0].get_rect()
         enemy_rect.left = poop[1]
         enemy_rect.top = poop[2]
