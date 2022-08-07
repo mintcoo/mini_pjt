@@ -3,12 +3,12 @@ import random
 #################################################################
 # 기본 초기화 (반드시 해야 하는 것들)
 # 초기화 ( 그냥 반드시 필요 )
-pygame.init() 
+pygame.init()
 
 # 화면 크기 설정
-screen_width = 480 
+screen_width = 480
 screen_height = 640
-screen = pygame.display.set_mode((screen_width, screen_height)) 
+screen = pygame.display.set_mode((screen_width, screen_height))
 
 # 화면 타이틀 설정
 pygame.display.set_caption("poop") # 게임 이름
@@ -20,15 +20,15 @@ clock = pygame.time.Clock()
 # 1. 사용자 게임 초기화 (배경 화면, 게임 이미지, 좌표, 속도, 폰트 등)
 
 # 배경
-background = pygame.image.load("C:\\Users\\xhakt\\Desktop\\mini_pjt\\py_practice_pygame\\background.png") 
+background = pygame.image.load("background.png")
 
 # 캐릭터
-character = pygame.image.load("C:\\Users\\xhakt\\Desktop\\mini_pjt\\py_practice_pygame\\character.png")
+character = pygame.image.load("character.png")
 character_size = character.get_rect().size # 이미지 크기를 구해옴
 character_width = character_size[0] # 캐릭터의 가로 크기
 character_height = character_size[1] # 캐릭터의 세로 크기
-character_x_pos = (screen_width / 2) - (character_width / 2) 
-character_y_pos = screen_height - character_height 
+character_x_pos = (screen_width / 2) - (character_width / 2)
+character_y_pos = screen_height - character_height
 
 # 이동할 좌표
 to_x = 0
@@ -41,7 +41,7 @@ character_speed = 0.5
 ## 적 enemy 캐릭터
 poops = []
 for poop in range(1, 6):
-    enemy = pygame.image.load("C:\\Users\\xhakt\\Desktop\\mini_pjt\\py_practice_pygame\\enemy.png")
+    enemy = pygame.image.load("enemy.png")
     enemy_size = enemy.get_rect().size
     enemy_width = enemy_size[0]
     enemy_height = enemy_size[1]
@@ -70,7 +70,7 @@ while switch:
 
         if event.type == pygame.KEYDOWN: # 키가 눌러졌는지 확인
             if event.key == pygame.K_LEFT: # 캐릭터를 왼쪽으로
-                to_x -= character_speed 
+                to_x -= character_speed
             elif event.key == pygame.K_RIGHT : # 캐릭터를 오른쪽으로
                 to_x += character_speed
 
@@ -83,7 +83,7 @@ while switch:
         if poop[2] > screen_height:
             poop[1] = random.randrange(0, (screen_width - enemy_width))
             poop[2] = 0
-    
+
 
     character_x_pos += to_x *dt
     ## 리스트 첫 시작 위치 차이..?
@@ -95,7 +95,7 @@ while switch:
     # 3. 게임 캐릭터 위치 정의
 
     # 가로 경계값 처리
-    if character_x_pos < 0: 
+    if character_x_pos < 0:
         character_x_pos = 0
     elif character_x_pos > screen_width - character_width: # ★캐릭터 크기만큼 빼줘야 끝에 그려진다!
             character_x_pos = screen_width - character_width
@@ -107,7 +107,7 @@ while switch:
     character_rect = character.get_rect()
     character_rect.left = character_x_pos
     character_rect.top = character_y_pos
-    
+
     ## 적과의 충돌 포문
     enemy_rects = []
     for poop in poops:
@@ -125,9 +125,9 @@ while switch:
 
     # 5. 화면에 그리기
     screen.blit(background, (0, 0)) # 배경 그리기 (좌표 0, 0 이 제일왼쪽위)
-    
+
     screen.blit(character, (character_x_pos, character_y_pos)) # 계속 캐릭터를 그림
-    
+
     for poop in poops:
         screen.blit(poop[0], (poop[1], poop[2])) # 적 그리기
 
