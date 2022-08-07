@@ -86,10 +86,15 @@ while switch:
     character_x_pos += to_x * dt
     ## 리스트 첫 시작 위치 차이..?
     poops_last = []
+
     for poop in poops:
-        ran = random.randrange(0, 5)
-        poop[2] += ran
-        poops_last.append([poop[0], poop[1], poop[2]])
+        if poop[2] == 0:
+            ran = random.randrange(0, 5)
+            poop[2] += ran
+            poops_last.append([poop[0], poop[1], poop[2]])
+    
+        else:
+            poop[2] += ran
 
 
 
