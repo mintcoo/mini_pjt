@@ -14,6 +14,12 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 # 화면 타이틀 설정
 pygame.display.set_caption("poop")  # 게임 이름
 
+# 배경 음악 설정
+sound = pygame.mixer.Sound("resources/zelda_8bit.mp3")
+sound.set_volume(0.4)
+sound.play(-1)
+
+
 # FPS
 clock = pygame.time.Clock()
 #################################################################
@@ -168,7 +174,7 @@ while switch:
 
 
     # 5. 화면에 그리기
-    count_draw = game_font.render(str(f'Scores : {count}'), True, (255, 255, 255 ))
+    count_draw = game_font.render(str(f'Scores : {count}'), True, (0, 0, 0 ))
 
 
     screen.blit(background, (0, 0))  # 배경 그리기 (좌표 0, 0 이 제일왼쪽위)
@@ -185,7 +191,9 @@ while switch:
 
     pygame.display.update()  # 게임화면을 다시 그리기! (while 동안 계쏙 돌면서 화면을 다시 그림 필수임!)
 
-pygame.time.delay(2000)  # 2초 정도 대기 (ms)
+sound.stop()
+pygame.time.delay(1000)  # 2초 정도 대기 (ms)
+
 
 # pygame 종료
 pygame.quit()
