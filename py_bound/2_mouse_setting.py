@@ -1,6 +1,7 @@
 
 import os
 import pygame
+import math
 
 #################################################################
 # 기본 초기화 (반드시 해야 하는 것들)
@@ -58,21 +59,12 @@ character_speed = 0.1
 to_x = 0
 to_y = 0
 
-# # 캐릭터 움직임 함수
-# def moving(x, y, x_goal, y_goal, set_switch=True):
-#     while set_switch == True:
-#         if x > x_goal:
-#             to_x -= character_speed
-#         if x < x_goal:
-#             to_x += character_speed
-#         if y > y_goal:
-#             to_y -= character_speed
-#         if y < y_goal:
-#             to_y += character_speed
-#         if x == x_goal:
-#             to_x = 0
-#         if y == y_goal:
-#             to_y = 0
+# 캐릭터 움직임 스위치
+move_switch_R = False
+move_switch_L = False
+move_switch_U = False
+move_switch_D = False
+
 
 # 마우스 위치
 mouse_position = (0, 0)
@@ -93,8 +85,24 @@ while switch:
                 to_x = 0
                 to_y = 0
                 print(mouse_position)
-                if mouse_position[0] > character_x_pos:
+                left_right = mouse_position[0] - character_x_pos
+                up_down = mouse_position[1] - character_y_pos
+                add_move = left_right - up_down
+
+                if mouse_position[0] > character_x_pos :
                     to_x += character_speed
+                    move_switch_R = True
+                elif mouse_position[0] < character_x_pos:
+                    to_x -= character_speed
+                    move_switch_L = True
+
+                if mouse_position[1] > character_y_pos:
+                    to_y += character_speed
+                    move_switch_U = True
+                elif mouse_position[1] < character_y_pos:
+                    to_y -= character_speed
+                    move_switch_D = True
+
                 # if mouse_position[0] > character_x_pos and mouse_position[1] > character_y_pos :
                 #     to_x += character_speed
                 #     to_y += character_speed
@@ -108,13 +116,21 @@ while switch:
                 #     to_x -= character_speed
                 #     to_y -= character_speed
 
-
-    if mouse_position[0] == character_x_pos:
-        to_x = 0
-
     character_x_pos += to_x * dt
     character_y_pos += to_y * dt
 
+    if move_switch_R == True and mouse_position[0] < character_x_pos:
+        to_x = 0
+        move_switch_R = False
+    if move_switch_L == True and mouse_position[0] > character_x_pos:
+        to_x = 0
+        move_switch_L = False
+    if move_switch_U == True and mouse_position[1] < character_y_pos:
+        to_y = 0
+        move_switch_U = False
+    if move_switch_D == True and mouse_position[1] > character_y_pos:
+        to_y = 0
+        move_switch_D = False
 
     # 3. 게임 캐릭터 위치 정의
 
