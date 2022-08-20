@@ -85,36 +85,74 @@ while switch:
                 to_x = 0
                 to_y = 0
                 print(mouse_position)
-                left_right = mouse_position[0] - character_x_pos
-                up_down = mouse_position[1] - character_y_pos
-                add_move = left_right - up_down
+                left_right = abs(mouse_position[0] - character_x_pos)
+                up_down = abs(mouse_position[1] - character_y_pos)
 
-                if mouse_position[0] > character_x_pos :
-                    to_x += character_speed
+                # 우상향
+                if mouse_position[0] > character_x_pos and mouse_position[1] < character_y_pos:
                     move_switch_R = True
-                elif mouse_position[0] < character_x_pos:
-                    to_x -= character_speed
-                    move_switch_L = True
-
-                if mouse_position[1] > character_y_pos:
-                    to_y += character_speed
                     move_switch_U = True
-                elif mouse_position[1] < character_y_pos:
-                    to_y -= character_speed
-                    move_switch_D = True
+                    if left_right > up_down:
+                        to_x += character_speed
+                        to_y -= character_speed * up_down / left_right
 
-                # if mouse_position[0] > character_x_pos and mouse_position[1] > character_y_pos :
-                #     to_x += character_speed
-                #     to_y += character_speed
-                # elif mouse_position[0] > character_x_pos and mouse_position[1] < character_y_pos :
-                #     to_x += character_speed
-                #     to_y -= character_speed
-                # elif mouse_position[0] < character_x_pos and mouse_position[1] > character_y_pos:
-                #     to_x -= character_speed
-                #     to_y += character_speed
-                # elif mouse_position[0] < character_x_pos and mouse_position[1] < character_y_pos :
-                #     to_x -= character_speed
-                #     to_y -= character_speed
+                    elif left_right == up_down:
+                        to_x += character_speed
+                        to_y -= character_speed
+                    elif left_right < up_down:
+                        to_x += character_speed * left_right / up_down
+                        to_y -= character_speed
+
+                # 우하향
+                if mouse_position[0] > character_x_pos and mouse_position[1] > character_y_pos:
+                    move_switch_R = True
+                    move_switch_D = True
+                    if left_right > up_down:
+                        to_x += character_speed
+                        to_y += character_speed * up_down / left_right
+
+                    elif left_right == up_down:
+                        to_x += character_speed
+                        to_y += character_speed
+
+                    elif left_right < up_down:
+                        to_x += character_speed * left_right / up_down
+                        to_y += character_speed
+
+                # 좌상향
+                if mouse_position[0] < character_x_pos and mouse_position[1] < character_y_pos:
+                    move_switch_L = True
+                    move_switch_U = True
+                    if left_right > up_down:
+                        to_x -= character_speed
+                        to_y -= character_speed * up_down / left_right
+
+                    elif left_right == up_down:
+                        to_x -= character_speed
+                        to_y -= character_speed
+                    elif left_right < up_down:
+                        to_x -= character_speed * left_right / up_down
+                        to_y -= character_speed
+
+                # 좌하향
+                if mouse_position[0] < character_x_pos and mouse_position[1] > character_y_pos:
+                    move_switch_L = True
+                    move_switch_D = True
+                    if left_right > up_down:
+                        to_x -= character_speed
+                        to_y += character_speed * up_down / left_right
+
+                    elif left_right == up_down:
+                        to_x -= character_speed
+                        to_y += character_speed
+
+                    elif left_right < up_down:
+                        to_x -= character_speed * left_right / up_down
+                        to_y += character_speed
+
+
+
+
 
     character_x_pos += to_x * dt
     character_y_pos += to_y * dt
@@ -125,12 +163,12 @@ while switch:
     if move_switch_L == True and mouse_position[0] > character_x_pos:
         to_x = 0
         move_switch_L = False
-    if move_switch_U == True and mouse_position[1] < character_y_pos:
-        to_y = 0
-        move_switch_U = False
-    if move_switch_D == True and mouse_position[1] > character_y_pos:
+    if move_switch_D == True and mouse_position[1] < character_y_pos:
         to_y = 0
         move_switch_D = False
+    if move_switch_U == True and mouse_position[1] > character_y_pos:
+        to_y = 0
+        move_switch_U = False
 
     # 3. 게임 캐릭터 위치 정의
 
