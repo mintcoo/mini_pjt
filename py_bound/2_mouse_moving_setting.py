@@ -1,7 +1,6 @@
 
 import os
 import pygame
-import math
 
 #################################################################
 # 기본 초기화 (반드시 해야 하는 것들)
@@ -36,6 +35,8 @@ background = pygame.image.load(os.path.join(image_path, "background.png"))
 
 # 시작존 만들기
 zone = pygame.image.load(os.path.join(image_path, "zone.png"))
+zone_size = zone.get_rect().size
+
 
 # 스테이지 만들기
 stage = pygame.image.load(os.path.join(image_path, "stage.png"))
@@ -65,9 +66,18 @@ move_switch_L = False
 move_switch_U = False
 move_switch_D = False
 
+# 마우스 커서 만들기
+mouse = pygame.image.load(os.path.join(image_path, "mouse.png"))
+mouse_size = mouse.get_rect().size
+mouse_width = mouse_size[0]
+mouse_height = mouse_size[1]
+
 
 # 마우스 위치
 mouse_position = (0, 0)
+
+# 마우스 스위치
+mouse_draw = False
 
 # 이벤트 루프
 switch = True # 게임이 진행중인가?
@@ -82,6 +92,11 @@ while switch:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 3:
                 mouse_position = pygame.mouse.get_pos()
+                mouse_draw = True
+                move_switch_R = False
+                move_switch_L = False
+                move_switch_U = False
+                move_switch_D = False
                 to_x = 0
                 to_y = 0
                 print(mouse_position)
@@ -150,9 +165,29 @@ while switch:
                         to_x -= character_speed * left_right / up_down
                         to_y += character_speed
 
+        if event.type == pygame.MOUSEBUTTONUP:
+            if event.button == 3:
+                mouse_draw = False
 
 
+    # 가로 경계값 처리
 
+    if character_x_pos < 120:
+        character_x_pos = 120
+    elif 395 < character_x_pos < 400 and 150 < character_y_pos < 200:
+        character_x_pos = 395
+    elif 395 < character_x_pos < 400 and 20 < character_y_pos < 50:
+        character_x_pos = 395
+
+    # 세로 경계값 처리
+    if character_y_pos < 30:
+        character_y_pos = 30
+    elif character_y_pos > 180:
+        character_y_pos = 180
+    elif character_x_pos > 400 and 55 > character_y_pos :
+        character_y_pos = 55
+    elif character_x_pos > 400 and 145 < character_y_pos :
+        character_y_pos = 145
 
     character_x_pos += to_x * dt
     character_y_pos += to_y * dt
@@ -180,7 +215,11 @@ while switch:
     screen.blit(background, (0, 0))
     screen.blit(zone, (100, 20))
     screen.blit(stage, (400, 50))
-    screen.blit(character, (character_x_pos, character_y_pos))
+    if mouse_draw == True:
+        screen.blit(mouse, (mouse_position[0] - mouse_width/2 , mouse_position[1] - mouse_height/2))
+
+    screen.blit(character, (character_x_pos - character_width/2, character_y_pos - character_height/2))
+
 
 
     pygame.display.update() # 게임화면을 다시 그리기! (while 동안 계쏙 돌면서 화면을 다시 그림 필수임!)

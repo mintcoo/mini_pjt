@@ -76,7 +76,7 @@ while switch:
     if character_x_pos < 0: 
         character_x_pos = 0
     elif character_x_pos > screen_width - character_width: # ★캐릭터 크기만큼 빼줘야 끝에 그려진다!
-            character_x_pos = screen_width - character_width
+        character_x_pos = screen_width - character_width
 
     # 세로 경계값 처리
     if character_y_pos < 0: 
