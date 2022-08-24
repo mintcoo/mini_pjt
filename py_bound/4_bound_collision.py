@@ -1,6 +1,6 @@
-
 import os
 import pygame
+from extra_bound_pattern import bound_1
 
 #################################################################
 # 기본 초기화 (반드시 해야 하는 것들)
@@ -76,15 +76,26 @@ mouse_height = mouse_size[1]
 # 마우스 위치
 mouse_position = (0, 0)
 
-# 마우스 스위치
+# 마우스 스위치, 목숨 스위치
 mouse_draw = False
+live = False
 
 # 폰트 정의
 game_font = pygame.font.Font(None, 30) # 폰트 객체 생성 (폰트, 크기)
 
 # 폭탄이미지
-bound = pygame.image.load(os.path.join(image_path, "bound.png"))
-bound_stage = [400, 500, 600, 700, 800, 900, 1000, 1100]
+bound_list = []
+for bomb in range(8):
+    bound = pygame.image.load(os.path.join(image_path, "bound.png"))
+    bound_size = bound.get_rect().size
+    bound_stage = [400, 500, 600, 700, 800, 900, 1000, 1100]
+    bound_x_pos = bound_stage[bomb]
+    bound_y_pos = 50
+    bound_list.append([bound, bound_x_pos, bound_y_pos])
+bound_2 = pygame.image.load(os.path.join(image_path, "bound2.png"))
+bound_3 = pygame.image.load(os.path.join(image_path, "bound3.png"))
+bound_4 = pygame.image.load(os.path.join(image_path, "bound4.png"))
+
 
 # 시작 시간 정보
 start_ticks = pygame.time.get_ticks() # 시작 tick을 받아옴
@@ -109,7 +120,7 @@ while switch:
                 move_switch_D = False
                 to_x = 0
                 to_y = 0
-                print(mouse_position)
+                #print(mouse_position)
                 left_right = abs(mouse_position[0] - character_x_pos)
                 up_down = abs(mouse_position[1] - character_y_pos)
 
@@ -179,6 +190,7 @@ while switch:
             if event.button == 3:
                 mouse_draw = False
 
+    # 3. 게임 캐릭터와 마우스 처리
 
     # 가로 경계값 처리
 
@@ -215,10 +227,28 @@ while switch:
         to_y = 0
         move_switch_U = False
 
-    # 3. 게임 캐릭터 위치 정의
 
 
     # 4. 충돌 처리
+
+    # 충돌 처리를 위한 rect 정보 업데이트
+    character_rect = character.get_rect()
+    character_rect.left = character_x_pos
+    character_rect.top = character_y_pos
+
+    # 폭피 충돌처리
+    bound_rects = []
+    for boom in bound_list:
+        bound_rect = boom[0].get_rect()
+        bound_rect.left = boom[1]
+        bound_rect.top = boom[2]
+        bound_rects.append(bound_rect)
+
+    # 충돌 체크
+
+    for rect in bound_rects:
+        if character_rect.colliderect(rect):
+            print("충돌함")
 
 
     # 5. 화면에 그리기
@@ -228,7 +258,7 @@ while switch:
 
 
 
-    bound_pattern = int((pygame.time.get_ticks() - start_ticks) / 700)
+    bound_pattern = int((pygame.time.get_ticks() - start_ticks) / 100)
     # 밀리세컨드라(ms) 환산하기 위해서 1000으로 나누어서 초(s) 단위로 표시
 
 
@@ -236,67 +266,7 @@ while switch:
     screen.blit(timer, (10, 10))
 
 
-    if bound_pattern % 16 == 1:
-        screen.blit(bound, (bound_stage[7], 50))
-    if bound_pattern % 16 == 2:
-        screen.blit(bound, (bound_stage[6], 50))
-    if bound_pattern % 16 == 3:
-        screen.blit(bound, (bound_stage[5], 50))
-    if bound_pattern % 16 == 4:
-        screen.blit(bound, (bound_stage[4], 50))
-    if bound_pattern % 16 == 5:
-        screen.blit(bound, (bound_stage[3], 50))
-    if bound_pattern % 16 == 6:
-        screen.blit(bound, (bound_stage[2], 50))
-    if bound_pattern % 16 == 7:
-        screen.blit(bound, (bound_stage[1], 50))
-    if bound_pattern % 16 == 8:
-        screen.blit(bound, (bound_stage[0], 50))
-    if bound_pattern % 16 == 9:
-        screen.blit(bound, (bound_stage[0], 50))
-        screen.blit(bound, (bound_stage[1], 50))
-        screen.blit(bound, (bound_stage[2], 50))
-        screen.blit(bound, (bound_stage[3], 50))
-    if bound_pattern % 16 == 10:
-        screen.blit(bound, (bound_stage[4], 50))
-        screen.blit(bound, (bound_stage[5], 50))
-        screen.blit(bound, (bound_stage[6], 50))
-        screen.blit(bound, (bound_stage[7], 50))
-    if bound_pattern % 16 == 11:
-        screen.blit(bound, (bound_stage[0], 50))
-        screen.blit(bound, (bound_stage[1], 50))
-        screen.blit(bound, (bound_stage[2], 50))
-        screen.blit(bound, (bound_stage[3], 50))
-    if bound_pattern % 16 == 12:
-        screen.blit(bound, (bound_stage[4], 50))
-        screen.blit(bound, (bound_stage[5], 50))
-        screen.blit(bound, (bound_stage[6], 50))
-        screen.blit(bound, (bound_stage[7], 50))
-
-    if bound_pattern % 16 == 13:
-        screen.blit(bound, (bound_stage[0], 50))
-        screen.blit(bound, (bound_stage[1], 50))
-        screen.blit(bound, (bound_stage[2], 50))
-        screen.blit(bound, (bound_stage[3], 50))
-
-    if bound_pattern % 16 == 14:
-        screen.blit(bound, (bound_stage[0], 50))
-        screen.blit(bound, (bound_stage[1], 50))
-        screen.blit(bound, (bound_stage[2], 50))
-        screen.blit(bound, (bound_stage[4], 50))
-        screen.blit(bound, (bound_stage[5], 50))
-        screen.blit(bound, (bound_stage[6], 50))
-        screen.blit(bound, (bound_stage[7], 50))
-    if bound_pattern % 16 == 15:
-        screen.blit(bound, (bound_stage[0], 50))
-        screen.blit(bound, (bound_stage[1], 50))
-        screen.blit(bound, (bound_stage[3], 50))
-        screen.blit(bound, (bound_stage[4], 50))
-        screen.blit(bound, (bound_stage[5], 50))
-        screen.blit(bound, (bound_stage[6], 50))
-        screen.blit(bound, (bound_stage[7], 50))
-
-
+    bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen)
 
     if mouse_draw == True:
         screen.blit(mouse, (mouse_position[0] - mouse_width/2 , mouse_position[1] - mouse_height/2))
