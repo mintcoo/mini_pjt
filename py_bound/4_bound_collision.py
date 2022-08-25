@@ -233,8 +233,8 @@ while switch:
 
     # 충돌 처리를 위한 rect 정보 업데이트
     character_rect = character.get_rect()
-    character_rect.left = character_x_pos
-    character_rect.top = character_y_pos
+    character_rect.left = character_x_pos - character_width/2
+    character_rect.top = character_y_pos - character_height/2
 
     # 폭피 충돌처리
     bound_rects = []
@@ -246,10 +246,9 @@ while switch:
 
     # 충돌 체크
 
-    for rect in bound_rects:
-        if character_rect.colliderect(rect):
-            print("충돌함")
-
+    # for rect in bound_rects:
+    #     if character_rect.colliderect(rect):
+    #         print("충돌함", rect)
 
     # 5. 화면에 그리기
     screen.blit(background, (0, 0))
@@ -258,7 +257,7 @@ while switch:
 
 
 
-    bound_pattern = int((pygame.time.get_ticks() - start_ticks) / 100)
+    bound_pattern = int((pygame.time.get_ticks() - start_ticks) / 150)
     # 밀리세컨드라(ms) 환산하기 위해서 1000으로 나누어서 초(s) 단위로 표시
 
 
@@ -266,7 +265,12 @@ while switch:
     screen.blit(timer, (10, 10))
 
 
-    bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen)
+
+    rect_result = bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, character_rect, bound_rects)
+    if rect_result:
+        character_x_pos = 150
+        character_y_pos = 100
+
 
     if mouse_draw == True:
         screen.blit(mouse, (mouse_position[0] - mouse_width/2 , mouse_position[1] - mouse_height/2))
