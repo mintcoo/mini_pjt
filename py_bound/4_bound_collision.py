@@ -96,6 +96,8 @@ bound_2 = pygame.image.load(os.path.join(image_path, "bound2.png"))
 bound_3 = pygame.image.load(os.path.join(image_path, "bound3.png"))
 bound_4 = pygame.image.load(os.path.join(image_path, "bound4.png"))
 
+# 목숨
+live = 30
 
 # 시작 시간 정보
 start_ticks = pygame.time.get_ticks() # 시작 tick을 받아옴
@@ -261,13 +263,14 @@ while switch:
     # 밀리세컨드라(ms) 환산하기 위해서 1000으로 나누어서 초(s) 단위로 표시
 
 
-    timer = game_font.render(str(int(bound_pattern)), True, (255, 255, 255))
-    screen.blit(timer, (10, 10))
+    life = game_font.render(str(f'Life : {live}'), True, (255, 255, 255))
+    screen.blit(life, (10, 10))
 
 
 
-    rect_result = bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, character_rect, bound_rects)
+    rect_result = bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, live, screen, character_rect, bound_rects)
     if rect_result:
+        live -= 1
         character_x_pos = 150
         character_y_pos = 100
 
@@ -277,9 +280,11 @@ while switch:
 
     screen.blit(character, (character_x_pos - character_width/2, character_y_pos - character_height/2))
 
+    if live <= -1:
+        switch = False
 
     pygame.display.update() # 게임화면을 다시 그리기! (while 동안 계쏙 돌면서 화면을 다시 그림 필수임!)
 
-
+pygame.time.delay(1000)
 # pygame 종료
 pygame.quit()

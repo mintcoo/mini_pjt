@@ -1,93 +1,93 @@
 
 
-def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, character_rect, bound_rects):
+def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, live, screen, character_rect, bound_rects):
 
     check_list = []
-    if bound_pattern % 64 == 1:
+    if bound_pattern % 80 == 1:
         screen.blit(bound_list[7][0], (bound_list[7][1], bound_list[7][2]))
         check_list.append(bound_rects[7])
 
-    if bound_pattern % 64 == 2:
+    if bound_pattern % 80 == 2:
         screen.blit(bound_2, (bound_list[7][1], 50))
-    if bound_pattern % 64 == 3:
+    if bound_pattern % 80 == 3:
         screen.blit(bound_3, (bound_list[7][1], 50))
-    if bound_pattern % 64 == 4:
+    if bound_pattern % 80 == 4:
         screen.blit(bound_4, (bound_list[7][1], 50))
 
-    if bound_pattern % 64 == 5:
+    if bound_pattern % 80 == 5:
         screen.blit(bound_list[6][0], (bound_list[6][1], bound_list[6][2]))
         check_list.append(bound_rects[6])
 
-    if bound_pattern % 64 == 6:
+    if bound_pattern % 80 == 6:
         screen.blit(bound_2, (bound_list[6][1], 50))
-    if bound_pattern % 64 == 7:
+    if bound_pattern % 80 == 7:
         screen.blit(bound_3, (bound_list[6][1], 50))
-    if bound_pattern % 64 == 8:
+    if bound_pattern % 80 == 8:
         screen.blit(bound_4, (bound_list[6][1], 50))
 
-    if bound_pattern % 64 == 9:
+    if bound_pattern % 80 == 9:
         screen.blit(bound_list[5][0], (bound_list[5][1], bound_list[5][2]))
         check_list.append(bound_rects[5])
-    if bound_pattern % 64 == 10:
+    if bound_pattern % 80 == 10:
         screen.blit(bound_2, (bound_list[5][1], 50))
-    if bound_pattern % 64 == 11:
+    if bound_pattern % 80 == 11:
         screen.blit(bound_3, (bound_list[5][1], 50))
-    if bound_pattern % 64 == 12:
+    if bound_pattern % 80 == 12:
         screen.blit(bound_4, (bound_list[5][1], 50))
 
-    if bound_pattern % 64 == 13:
+    if bound_pattern % 80 == 13:
         screen.blit(bound_list[4][0], (bound_list[4][1], bound_list[4][2]))
         check_list.append(bound_rects[4])
-    if bound_pattern % 64 == 14:
+    if bound_pattern % 80 == 14:
         screen.blit(bound_2, (bound_list[4][1], 50))
-    if bound_pattern % 64 == 15:
+    if bound_pattern % 80 == 15:
         screen.blit(bound_3, (bound_list[4][1], 50))
-    if bound_pattern % 64 == 16:
+    if bound_pattern % 80 == 16:
         screen.blit(bound_4, (bound_list[4][1], 50))
 
-    if bound_pattern % 64 == 17:
+    if bound_pattern % 80 == 17:
         screen.blit(bound_list[3][0], (bound_list[3][1], bound_list[3][2]))
         check_list.append(bound_rects[3])
-    if bound_pattern % 64 == 18:
+    if bound_pattern % 80 == 18:
         screen.blit(bound_2, (bound_list[3][1], 50))
-    if bound_pattern % 64 == 19:
+    if bound_pattern % 80 == 19:
         screen.blit(bound_3, (bound_list[3][1], 50))
-    if bound_pattern % 64 == 20:
+    if bound_pattern % 80 == 20:
         screen.blit(bound_4, (bound_list[3][1], 50))
 
-    if bound_pattern % 64 == 21:
+    if bound_pattern % 80 == 21:
         screen.blit(bound_list[2][0], (bound_list[2][1], bound_list[2][2]))
         check_list.append(bound_rects[2])
-    if bound_pattern % 64 == 22:
+    if bound_pattern % 80 == 22:
         screen.blit(bound_2, (bound_list[2][1], 50))
-    if bound_pattern % 64 == 23:
+    if bound_pattern % 80 == 23:
         screen.blit(bound_3, (bound_list[2][1], 50))
-    if bound_pattern % 64 == 24:
+    if bound_pattern % 80 == 24:
         screen.blit(bound_4, (bound_list[2][1], 50))
 
-    if bound_pattern % 64 == 25:
+    if bound_pattern % 80 == 25:
         screen.blit(bound_list[1][0], (bound_list[1][1], bound_list[1][2]))
         check_list.append(bound_rects[1])
-    if bound_pattern % 64 == 26:
+    if bound_pattern % 80 == 26:
         screen.blit(bound_2, (bound_list[1][1], 50))
-    if bound_pattern % 64 == 27:
+    if bound_pattern % 80 == 27:
         screen.blit(bound_3, (bound_list[1][1], 50))
-    if bound_pattern % 64 == 28:
+    if bound_pattern % 80 == 28:
         screen.blit(bound_4, (bound_list[1][1], 50))
 
-    if bound_pattern % 64 == 29:
+    if bound_pattern % 80 == 29:
         screen.blit(bound_list[0][0], (bound_list[0][1], bound_list[0][2]))
         check_list.append(bound_rects[0])
-    if bound_pattern % 64 == 30:
+    if bound_pattern % 80 == 30:
         screen.blit(bound_2, (bound_list[0][1], 50))
-    if bound_pattern % 64 == 31:
+    if bound_pattern % 80 == 31:
         screen.blit(bound_3, (bound_list[0][1], 50))
-    if bound_pattern % 64 == 31:
+    if bound_pattern % 80 == 31:
         screen.blit(bound_4, (bound_list[0][1], 50))
 
 
 
-    if bound_pattern % 64 == 32:
+    if bound_pattern % 80 == 32:
         screen.blit(bound_list[0][0], (bound_list[0][1], bound_list[0][2]))
         screen.blit(bound_list[1][0], (bound_list[1][1], bound_list[1][2]))
         screen.blit(bound_list[2][0], (bound_list[2][1], bound_list[2][2]))
@@ -97,22 +97,22 @@ def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, charac
         check_list.append(bound_rects[2])
         check_list.append(bound_rects[3])
 
-    if bound_pattern % 64 == 33:
+    if bound_pattern % 80 == 33:
         screen.blit(bound_2, (bound_list[0][1], 50))
         screen.blit(bound_2, (bound_list[1][1], 50))
         screen.blit(bound_2, (bound_list[2][1], 50))
         screen.blit(bound_2, (bound_list[3][1], 50))
-    if bound_pattern % 64 == 34:
+    if bound_pattern % 80 == 34:
         screen.blit(bound_3, (bound_list[0][1], 50))
         screen.blit(bound_3, (bound_list[1][1], 50))
         screen.blit(bound_3, (bound_list[2][1], 50))
         screen.blit(bound_3, (bound_list[3][1], 50))
-    if bound_pattern % 64 == 35:
+    if bound_pattern % 80 == 35:
         screen.blit(bound_4, (bound_list[0][1], 50))
         screen.blit(bound_4, (bound_list[1][1], 50))
         screen.blit(bound_4, (bound_list[2][1], 50))
         screen.blit(bound_4, (bound_list[3][1], 50))
-    if bound_pattern % 64 == 36:
+    if bound_pattern % 80 == 38:
         screen.blit(bound_list[4][0], (bound_list[4][1], bound_list[4][2]))
         screen.blit(bound_list[5][0], (bound_list[5][1], bound_list[5][2]))
         screen.blit(bound_list[6][0], (bound_list[6][1], bound_list[6][2]))
@@ -122,73 +122,23 @@ def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, charac
         check_list.append(bound_rects[6])
         check_list.append(bound_rects[7])
 
-    if bound_pattern % 64 == 37:
+    if bound_pattern % 80 == 39:
         screen.blit(bound_2, (bound_list[4][1], 50))
         screen.blit(bound_2, (bound_list[5][1], 50))
         screen.blit(bound_2, (bound_list[6][1], 50))
         screen.blit(bound_2, (bound_list[7][1], 50))
-    if bound_pattern % 64 == 38:
+    if bound_pattern % 80 == 40:
         screen.blit(bound_3, (bound_list[4][1], 50))
         screen.blit(bound_3, (bound_list[5][1], 50))
         screen.blit(bound_3, (bound_list[6][1], 50))
         screen.blit(bound_3, (bound_list[7][1], 50))
-    if bound_pattern % 64 == 39:
-        screen.blit(bound_4, (bound_list[4][1], 50))
-        screen.blit(bound_4, (bound_list[5][1], 50))
-        screen.blit(bound_4, (bound_list[6][1], 50))
-        screen.blit(bound_4, (bound_list[7][1], 50))
-
-    if bound_pattern % 64 == 40:
-        screen.blit(bound_list[0][0], (bound_list[0][1], bound_list[0][2]))
-        screen.blit(bound_list[1][0], (bound_list[1][1], bound_list[1][2]))
-        screen.blit(bound_list[2][0], (bound_list[2][1], bound_list[2][2]))
-        screen.blit(bound_list[3][0], (bound_list[3][1], bound_list[3][2]))
-        check_list.append(bound_rects[0])
-        check_list.append(bound_rects[1])
-        check_list.append(bound_rects[2])
-        check_list.append(bound_rects[3])
-    if bound_pattern % 64 == 41:
-        screen.blit(bound_2, (bound_list[0][1], 50))
-        screen.blit(bound_2, (bound_list[1][1], 50))
-        screen.blit(bound_2, (bound_list[2][1], 50))
-        screen.blit(bound_2, (bound_list[3][1], 50))
-    if bound_pattern % 64 == 42:
-        screen.blit(bound_3, (bound_list[0][1], 50))
-        screen.blit(bound_3, (bound_list[1][1], 50))
-        screen.blit(bound_3, (bound_list[2][1], 50))
-        screen.blit(bound_3, (bound_list[3][1], 50))
-    if bound_pattern % 64 == 43:
-        screen.blit(bound_4, (bound_list[0][1], 50))
-        screen.blit(bound_4, (bound_list[1][1], 50))
-        screen.blit(bound_4, (bound_list[2][1], 50))
-        screen.blit(bound_4, (bound_list[3][1], 50))
-    if bound_pattern % 64 == 44:
-        screen.blit(bound_list[4][0], (bound_list[4][1], bound_list[4][2]))
-        screen.blit(bound_list[5][0], (bound_list[5][1], bound_list[5][2]))
-        screen.blit(bound_list[6][0], (bound_list[6][1], bound_list[6][2]))
-        screen.blit(bound_list[7][0], (bound_list[7][1], bound_list[7][2]))
-        check_list.append(bound_rects[4])
-        check_list.append(bound_rects[5])
-        check_list.append(bound_rects[6])
-        check_list.append(bound_rects[7])
-
-    if bound_pattern % 64 == 45:
-        screen.blit(bound_2, (bound_list[4][1], 50))
-        screen.blit(bound_2, (bound_list[5][1], 50))
-        screen.blit(bound_2, (bound_list[6][1], 50))
-        screen.blit(bound_2, (bound_list[7][1], 50))
-    if bound_pattern % 64 == 46:
-        screen.blit(bound_3, (bound_list[4][1], 50))
-        screen.blit(bound_3, (bound_list[5][1], 50))
-        screen.blit(bound_3, (bound_list[6][1], 50))
-        screen.blit(bound_3, (bound_list[7][1], 50))
-    if bound_pattern % 64 == 47:
+    if bound_pattern % 80 == 41:
         screen.blit(bound_4, (bound_list[4][1], 50))
         screen.blit(bound_4, (bound_list[5][1], 50))
         screen.blit(bound_4, (bound_list[6][1], 50))
         screen.blit(bound_4, (bound_list[7][1], 50))
 
-    if bound_pattern % 64 == 48:
+    if bound_pattern % 80 == 44:
         screen.blit(bound_list[0][0], (bound_list[0][1], bound_list[0][2]))
         screen.blit(bound_list[1][0], (bound_list[1][1], bound_list[1][2]))
         screen.blit(bound_list[2][0], (bound_list[2][1], bound_list[2][2]))
@@ -197,23 +147,73 @@ def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, charac
         check_list.append(bound_rects[1])
         check_list.append(bound_rects[2])
         check_list.append(bound_rects[3])
-    if bound_pattern % 64 == 49:
+    if bound_pattern % 80 == 45:
         screen.blit(bound_2, (bound_list[0][1], 50))
         screen.blit(bound_2, (bound_list[1][1], 50))
         screen.blit(bound_2, (bound_list[2][1], 50))
         screen.blit(bound_2, (bound_list[3][1], 50))
-    if bound_pattern % 64 == 50:
+    if bound_pattern % 80 == 46:
         screen.blit(bound_3, (bound_list[0][1], 50))
         screen.blit(bound_3, (bound_list[1][1], 50))
         screen.blit(bound_3, (bound_list[2][1], 50))
         screen.blit(bound_3, (bound_list[3][1], 50))
-    if bound_pattern % 64 == 51:
+    if bound_pattern % 80 == 47:
+        screen.blit(bound_4, (bound_list[0][1], 50))
+        screen.blit(bound_4, (bound_list[1][1], 50))
+        screen.blit(bound_4, (bound_list[2][1], 50))
+        screen.blit(bound_4, (bound_list[3][1], 50))
+    if bound_pattern % 80 == 50:
+        screen.blit(bound_list[4][0], (bound_list[4][1], bound_list[4][2]))
+        screen.blit(bound_list[5][0], (bound_list[5][1], bound_list[5][2]))
+        screen.blit(bound_list[6][0], (bound_list[6][1], bound_list[6][2]))
+        screen.blit(bound_list[7][0], (bound_list[7][1], bound_list[7][2]))
+        check_list.append(bound_rects[4])
+        check_list.append(bound_rects[5])
+        check_list.append(bound_rects[6])
+        check_list.append(bound_rects[7])
+
+    if bound_pattern % 80 == 51:
+        screen.blit(bound_2, (bound_list[4][1], 50))
+        screen.blit(bound_2, (bound_list[5][1], 50))
+        screen.blit(bound_2, (bound_list[6][1], 50))
+        screen.blit(bound_2, (bound_list[7][1], 50))
+    if bound_pattern % 80 == 52:
+        screen.blit(bound_3, (bound_list[4][1], 50))
+        screen.blit(bound_3, (bound_list[5][1], 50))
+        screen.blit(bound_3, (bound_list[6][1], 50))
+        screen.blit(bound_3, (bound_list[7][1], 50))
+    if bound_pattern % 80 == 53:
+        screen.blit(bound_4, (bound_list[4][1], 50))
+        screen.blit(bound_4, (bound_list[5][1], 50))
+        screen.blit(bound_4, (bound_list[6][1], 50))
+        screen.blit(bound_4, (bound_list[7][1], 50))
+
+    if bound_pattern % 80 == 56:
+        screen.blit(bound_list[0][0], (bound_list[0][1], bound_list[0][2]))
+        screen.blit(bound_list[1][0], (bound_list[1][1], bound_list[1][2]))
+        screen.blit(bound_list[2][0], (bound_list[2][1], bound_list[2][2]))
+        screen.blit(bound_list[3][0], (bound_list[3][1], bound_list[3][2]))
+        check_list.append(bound_rects[0])
+        check_list.append(bound_rects[1])
+        check_list.append(bound_rects[2])
+        check_list.append(bound_rects[3])
+    if bound_pattern % 80 == 57:
+        screen.blit(bound_2, (bound_list[0][1], 50))
+        screen.blit(bound_2, (bound_list[1][1], 50))
+        screen.blit(bound_2, (bound_list[2][1], 50))
+        screen.blit(bound_2, (bound_list[3][1], 50))
+    if bound_pattern % 80 == 58:
+        screen.blit(bound_3, (bound_list[0][1], 50))
+        screen.blit(bound_3, (bound_list[1][1], 50))
+        screen.blit(bound_3, (bound_list[2][1], 50))
+        screen.blit(bound_3, (bound_list[3][1], 50))
+    if bound_pattern % 80 == 59:
         screen.blit(bound_4, (bound_list[0][1], 50))
         screen.blit(bound_4, (bound_list[1][1], 50))
         screen.blit(bound_4, (bound_list[2][1], 50))
         screen.blit(bound_4, (bound_list[3][1], 50))
 
-    if bound_pattern % 64 == 52:
+    if bound_pattern % 80 == 63:
         screen.blit(bound_list[0][0], (bound_list[0][1], bound_list[0][2]))
         screen.blit(bound_list[1][0], (bound_list[1][1], bound_list[1][2]))
         screen.blit(bound_list[2][0], (bound_list[2][1], bound_list[2][2]))
@@ -228,7 +228,7 @@ def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, charac
         check_list.append(bound_rects[5])
         check_list.append(bound_rects[6])
         check_list.append(bound_rects[7])
-    if bound_pattern % 64 == 53:
+    if bound_pattern % 80 == 64:
         screen.blit(bound_2, (bound_list[0][1], 50))
         screen.blit(bound_2, (bound_list[1][1], 50))
         screen.blit(bound_2, (bound_list[2][1], 50))
@@ -236,7 +236,7 @@ def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, charac
         screen.blit(bound_2, (bound_list[5][1], 50))
         screen.blit(bound_2, (bound_list[6][1], 50))
         screen.blit(bound_2, (bound_list[7][1], 50))
-    if bound_pattern % 64 == 54:
+    if bound_pattern % 80 == 65:
         screen.blit(bound_3, (bound_list[0][1], 50))
         screen.blit(bound_3, (bound_list[1][1], 50))
         screen.blit(bound_3, (bound_list[2][1], 50))
@@ -244,7 +244,7 @@ def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, charac
         screen.blit(bound_3, (bound_list[5][1], 50))
         screen.blit(bound_3, (bound_list[6][1], 50))
         screen.blit(bound_3, (bound_list[7][1], 50))
-    if bound_pattern % 64 == 55:
+    if bound_pattern % 80 == 66:
         screen.blit(bound_4, (bound_list[0][1], 50))
         screen.blit(bound_4, (bound_list[1][1], 50))
         screen.blit(bound_4, (bound_list[2][1], 50))
@@ -253,7 +253,7 @@ def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, charac
         screen.blit(bound_4, (bound_list[6][1], 50))
         screen.blit(bound_4, (bound_list[7][1], 50))
 
-    if bound_pattern % 64 == 58:
+    if bound_pattern % 80 == 70:
         screen.blit(bound_list[0][0], (bound_list[0][1], bound_list[0][2]))
         screen.blit(bound_list[1][0], (bound_list[1][1], bound_list[1][2]))
         screen.blit(bound_list[3][0], (bound_list[3][1], bound_list[3][2]))
@@ -268,7 +268,7 @@ def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, charac
         check_list.append(bound_rects[5])
         check_list.append(bound_rects[6])
         check_list.append(bound_rects[7])
-    if bound_pattern % 64 == 59:
+    if bound_pattern % 80 == 71:
         screen.blit(bound_2, (bound_list[0][1], 50))
         screen.blit(bound_2, (bound_list[1][1], 50))
         screen.blit(bound_2, (bound_list[3][1], 50))
@@ -276,7 +276,7 @@ def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, charac
         screen.blit(bound_2, (bound_list[5][1], 50))
         screen.blit(bound_2, (bound_list[6][1], 50))
         screen.blit(bound_2, (bound_list[7][1], 50))
-    if bound_pattern % 64 == 60:
+    if bound_pattern % 80 == 72:
         screen.blit(bound_3, (bound_list[0][1], 50))
         screen.blit(bound_3, (bound_list[1][1], 50))
         screen.blit(bound_3, (bound_list[3][1], 50))
@@ -284,7 +284,7 @@ def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, charac
         screen.blit(bound_3, (bound_list[5][1], 50))
         screen.blit(bound_3, (bound_list[6][1], 50))
         screen.blit(bound_3, (bound_list[7][1], 50))
-    if bound_pattern % 64 == 61:
+    if bound_pattern % 80 == 73:
         screen.blit(bound_4, (bound_list[0][1], 50))
         screen.blit(bound_4, (bound_list[1][1], 50))
         screen.blit(bound_4, (bound_list[3][1], 50))
