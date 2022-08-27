@@ -1,6 +1,66 @@
 
+def bound_stage_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, character_rect, bound_rects):
 
-def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, live, screen, character_rect, bound_rects):
+    check_list = []
+    if bound_pattern % 13 == 1:
+        screen.blit(bound_list[0][0], (bound_list[0][1], bound_list[0][2]))
+        screen.blit(bound_list[2][0], (bound_list[2][1], bound_list[2][2]))
+        screen.blit(bound_list[4][0], (bound_list[4][1], bound_list[4][2]))
+        screen.blit(bound_list[6][0], (bound_list[6][1], bound_list[6][2]))
+        check_list.append(bound_rects[0])
+        check_list.append(bound_rects[2])
+        check_list.append(bound_rects[4])
+        check_list.append(bound_rects[6])
+    if bound_pattern % 13 == 2:
+        screen.blit(bound_2, (bound_list[0][1], 50))
+        screen.blit(bound_2, (bound_list[2][1], 50))
+        screen.blit(bound_2, (bound_list[4][1], 50))
+        screen.blit(bound_2, (bound_list[6][1], 50))
+    if bound_pattern % 13 == 3:
+        screen.blit(bound_3, (bound_list[0][1], 50))
+        screen.blit(bound_3, (bound_list[2][1], 50))
+        screen.blit(bound_3, (bound_list[4][1], 50))
+        screen.blit(bound_3, (bound_list[6][1], 50))
+    if bound_pattern % 13 == 4:
+        screen.blit(bound_4, (bound_list[0][1], 50))
+        screen.blit(bound_4, (bound_list[2][1], 50))
+        screen.blit(bound_4, (bound_list[4][1], 50))
+        screen.blit(bound_4, (bound_list[6][1], 50))
+
+    if bound_pattern % 13 == 7:
+        screen.blit(bound_list[1][0], (bound_list[1][1], bound_list[1][2]))
+        screen.blit(bound_list[3][0], (bound_list[3][1], bound_list[3][2]))
+        screen.blit(bound_list[5][0], (bound_list[5][1], bound_list[5][2]))
+        screen.blit(bound_list[7][0], (bound_list[7][1], bound_list[7][2]))
+        check_list.append(bound_rects[1])
+        check_list.append(bound_rects[3])
+        check_list.append(bound_rects[5])
+        check_list.append(bound_rects[7])
+
+    if bound_pattern % 13 == 8:
+        screen.blit(bound_2, (bound_list[1][1], 50))
+        screen.blit(bound_2, (bound_list[3][1], 50))
+        screen.blit(bound_2, (bound_list[5][1], 50))
+        screen.blit(bound_2, (bound_list[7][1], 50))
+    if bound_pattern % 13 == 9:
+        screen.blit(bound_3, (bound_list[1][1], 50))
+        screen.blit(bound_3, (bound_list[3][1], 50))
+        screen.blit(bound_3, (bound_list[5][1], 50))
+        screen.blit(bound_3, (bound_list[7][1], 50))
+    if bound_pattern % 13 == 10:
+        screen.blit(bound_4, (bound_list[1][1], 50))
+        screen.blit(bound_4, (bound_list[3][1], 50))
+        screen.blit(bound_4, (bound_list[5][1], 50))
+        screen.blit(bound_4, (bound_list[7][1], 50))
+
+    for rect in check_list:
+        rect_result = character_rect.colliderect(rect)
+        if rect_result:
+            return rect_result
+
+
+
+def bound_stage_2(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, character_rect, bound_rects):
 
     check_list = []
     if bound_pattern % 80 == 1:
@@ -298,4 +358,3 @@ def bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, live, screen, 
         rect_result = character_rect.colliderect(rect)
         if rect_result:
             return rect_result
-

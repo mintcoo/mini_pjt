@@ -1,6 +1,6 @@
 import os
 import pygame
-from extra_bound_pattern import *
+from extra_bound_pattern import bound_1
 
 #################################################################
 # 기본 초기화 (반드시 해야 하는 것들)
@@ -99,10 +99,6 @@ bound_4 = pygame.image.load(os.path.join(image_path, "bound4.png"))
 # 목숨
 live = 30
 
-# 스테이지
-stage_1 = True
-stage_2 = False
-
 # 시작 시간 정보
 start_ticks = pygame.time.get_ticks() # 시작 tick을 받아옴
 
@@ -126,7 +122,7 @@ while switch:
                 move_switch_D = False
                 to_x = 0
                 to_y = 0
-                print(mouse_position)
+                #print(mouse_position)
                 left_right = abs(mouse_position[0] - character_x_pos)
                 up_down = abs(mouse_position[1] - character_y_pos)
 
@@ -250,7 +246,11 @@ while switch:
         bound_rect.top = boom[2]
         bound_rects.append(bound_rect)
 
+    # 충돌 체크
 
+    # for rect in bound_rects:
+    #     if character_rect.colliderect(rect):
+    #         print("충돌함", rect)
 
     # 5. 화면에 그리기
     screen.blit(background, (0, 0))
@@ -262,41 +262,17 @@ while switch:
     bound_pattern = int((pygame.time.get_ticks() - start_ticks) / 150)
     # 밀리세컨드라(ms) 환산하기 위해서 1000으로 나누어서 초(s) 단위로 표시
 
-    if stage_1 == True:
-        if character_x_pos > 1210:
-            character_x_pos = 150
-            character_y_pos = 100
-            stage_1 = False
-            stage_2 = True
-        stage_view = game_font.render(str(f'Stage : 1'), True, (255, 255, 255))
-        screen.blit(stage_view, (10, 10))
-    if stage_2 == True:
-        if character_x_pos > 1210:
-            character_x_pos = 150
-            character_y_pos = 100
-            stage_2 = False
-            stage_3 = True
-        stage_view = game_font.render(str(f'Stage : 2'), True, (255, 255, 255))
-        screen.blit(stage_view, (10, 10))
 
     life = game_font.render(str(f'Life : {live}'), True, (255, 255, 255))
-    screen.blit(life, (10, 40))
+    screen.blit(life, (10, 10))
 
-    # 충돌 체크 및 폭피패턴
-    #
-    if stage_1 == True:
-        rect_result_1 = bound_stage_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, character_rect, bound_rects)
-        if rect_result_1:
-            live -= 1
-            character_x_pos = 150
-            character_y_pos = 100
 
-    if stage_2 == True:
-        rect_result = bound_stage_2(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, character_rect, bound_rects)
-        if rect_result:
-            live -= 1
-            character_x_pos = 150
-            character_y_pos = 100
+
+    rect_result = bound_1(bound_pattern, bound_2, bound_3, bound_4, bound_list, live, screen, character_rect, bound_rects)
+    if rect_result:
+        live -= 1
+        character_x_pos = 150
+        character_y_pos = 100
 
 
     if mouse_draw == True:
