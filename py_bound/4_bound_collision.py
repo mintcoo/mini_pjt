@@ -102,6 +102,7 @@ live = 30
 # 스테이지
 stage_1 = True
 stage_2 = False
+stage_3 = False
 
 # 시작 시간 정보
 start_ticks = pygame.time.get_ticks() # 시작 tick을 받아옴
@@ -109,7 +110,7 @@ start_ticks = pygame.time.get_ticks() # 시작 tick을 받아옴
 # 이벤트 루프
 switch = True # 게임이 진행중인가?
 while switch:
-    dt = clock.tick(30) # 게임화면의 초당 프레임수를 설정
+    dt = clock.tick(60) # 게임화면의 초당 프레임수를 설정
 
     # 2. 이벤트 처리 (키보드, 마우스 등)
     for event in pygame.event.get():    # 어떤 이벤트가 발생하였는가?
@@ -270,6 +271,7 @@ while switch:
             stage_2 = True
         stage_view = game_font.render(str(f'Stage : 1'), True, (255, 255, 255))
         screen.blit(stage_view, (10, 10))
+
     if stage_2 == True:
         if character_x_pos > 1210:
             character_x_pos = 150
@@ -278,6 +280,18 @@ while switch:
             stage_3 = True
         stage_view = game_font.render(str(f'Stage : 2'), True, (255, 255, 255))
         screen.blit(stage_view, (10, 10))
+
+    if stage_3 == True:
+        if character_x_pos > 1210:
+            clear = game_font.render(str(f'Bound Clear!!'), True, (255, 255, 255))
+            screen.blit(clear, (566, 226))
+            pygame.time.delay(1000)
+            switch = False
+        stage_view = game_font.render(str(f'Stage : 3'), True, (255, 255, 255))
+        screen.blit(stage_view, (10, 10))
+
+
+
 
     life = game_font.render(str(f'Life : {live}'), True, (255, 255, 255))
     screen.blit(life, (10, 40))
@@ -292,12 +306,18 @@ while switch:
             character_y_pos = 100
 
     if stage_2 == True:
-        rect_result = bound_stage_2(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, character_rect, bound_rects)
-        if rect_result:
+        rect_result_2 = bound_stage_2(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, character_rect, bound_rects)
+        if rect_result_2:
             live -= 1
             character_x_pos = 150
             character_y_pos = 100
 
+    if stage_3 == True:
+        rect_result = bound_stage_3(bound_pattern, bound_2, bound_3, bound_4, bound_list, screen, character_rect, bound_rects)
+        if rect_result:
+            live -= 1
+            character_x_pos = 150
+            character_y_pos = 100
 
     if mouse_draw == True:
         screen.blit(mouse, (mouse_position[0] - mouse_width/2 , mouse_position[1] - mouse_height/2))
@@ -309,6 +329,6 @@ while switch:
 
     pygame.display.update() # 게임화면을 다시 그리기! (while 동안 계쏙 돌면서 화면을 다시 그림 필수임!)
 
-pygame.time.delay(1000)
+pygame.time.delay(3000)
 # pygame 종료
 pygame.quit()

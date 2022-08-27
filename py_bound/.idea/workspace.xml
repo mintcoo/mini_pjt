@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a21d49ef-233e-4a55-88f3-cb65bbcd7c31" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/py_bound.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/capy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test..py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/4_bound_collision.py" beforeDir="false" afterPath="$PROJECT_DIR$/4_bound_collision.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra_bound_pattern.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra_bound_pattern.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/stage.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/stage.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
