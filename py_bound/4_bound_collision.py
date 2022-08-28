@@ -127,7 +127,6 @@ while switch:
                 move_switch_D = False
                 to_x = 0
                 to_y = 0
-                print(mouse_position)
                 left_right = abs(mouse_position[0] - character_x_pos)
                 up_down = abs(mouse_position[1] - character_y_pos)
 
@@ -260,7 +259,7 @@ while switch:
 
 
 
-    bound_pattern = int((pygame.time.get_ticks() - start_ticks) / 150)
+    bound_pattern = int((pygame.time.get_ticks() - start_ticks) / 80)
     # 밀리세컨드라(ms) 환산하기 위해서 1000으로 나누어서 초(s) 단위로 표시
 
     if stage_1 == True:
