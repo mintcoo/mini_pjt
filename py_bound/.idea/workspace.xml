@@ -3,8 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="a21d49ef-233e-4a55-88f3-cb65bbcd7c31" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra_bound_pattern.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/stage/stage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/5_complete_pjt.py" beforeDir="false" afterPath="$PROJECT_DIR$/5_complete_pjt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/5_complete_pjt.spec" beforeDir="false" afterPath="$PROJECT_DIR$/5_complete_pjt.spec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/5_complete_pjt.exe.manifest" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/5_complete_pjt.exe.manifest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/5_complete_pjt.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/5_complete_pjt.pkg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/Analysis-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/EXE-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/PKG-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/PYZ-00.pyz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/PYZ-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/base_library.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/warn-5_complete_pjt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/warn-5_complete_pjt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/xref-5_complete_pjt.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/xref-5_complete_pjt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/5_complete_pjt.exe" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,5 +196,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/5_complete_pjt.py</url>
+          <line>288</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

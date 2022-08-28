@@ -29,12 +29,11 @@ clock = pygame.time.Clock()
 STATIC_PROJECT_PATH = os.path.abspath(os.curdir)
 STATIC_IMAGE_PATH = f"{STATIC_PROJECT_PATH}/resources/images"
 
-
 # 배경 만들기
 # background = pygame.image.load(os.path.join(image_path, 'background.png'))
 background = pygame.image.load(f"{STATIC_IMAGE_PATH}/background.png")
 
-#이런식으로
+# 이런식으로
 # PYGAME_IMAGES
 # 시작존 만들기
 zone = pygame.image.load(f"{STATIC_IMAGE_PATH}/zone.png")
@@ -105,6 +104,7 @@ live = 30
 stage_1 = True
 stage_2 = False
 stage_3 = False
+clear_switch = False
 
 # 시작 시간 정보
 start_ticks = pygame.time.get_ticks()  # 시작 tick을 받아옴
@@ -278,12 +278,15 @@ while switch:
 
     if stage_3 == True:
         if character_x_pos > 1210:
-            clear = game_font.render(str(f'Bound Clear!!'), True, (255, 255, 255))
-            screen.blit(clear, (566, 226))
             pygame.time.delay(1000)
-            switch = False
+            stage_3 = False
+            clear_switch = True #여기서 트루넣고
         stage_view = game_font.render(str(f'Stage : 3'), True, (255, 255, 255))
         screen.blit(stage_view, (10, 10))
+
+    if clear_switch == True:
+        clear = game_font.render(str(f'Bound Clear !!'), True, (255, 255, 255))
+        screen.blit(clear, (570, 226))
 
     life = game_font.render(str(f'Life : {live}'), True, (255, 255, 255))
     screen.blit(life, (10, 40))
