@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/5_complete_pjt.py" beforeDir="false" afterPath="$PROJECT_DIR$/5_complete_pjt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/5_complete_pjt.spec" beforeDir="false" afterPath="$PROJECT_DIR$/5_complete_pjt.spec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/5_complete_pjt.exe.manifest" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/5_complete_pjt.exe.manifest" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/5_complete_pjt.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/5_complete_pjt.pkg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/Analysis-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/EXE-00.toc" afterDir="false" />
@@ -14,8 +13,19 @@
       <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/PYZ-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/base_library.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/warn-5_complete_pjt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/warn-5_complete_pjt.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/5_complete_pjt/xref-5_complete_pjt.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/5_complete_pjt/xref-5_complete_pjt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/5_complete_pjt.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Bound.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/resources/extra_bound_pattern.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/resources/images/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/resources/images/bound.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/resources/images/bound2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/resources/images/bound3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/resources/images/bound4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/resources/images/bound5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/resources/images/mouse.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/resources/images/poong.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/resources/images/stage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/resources/images/zone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/resources/music/summer.mp3" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

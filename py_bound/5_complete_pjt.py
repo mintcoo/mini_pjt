@@ -314,7 +314,7 @@ while switch:
                                     bound_rects)
         if rect_result:
             live -= 1
-            character_x_pos = 150
+            chakracter_x_pos = 150
             character_y_pos = 100
 
     if mouse_draw == True:
